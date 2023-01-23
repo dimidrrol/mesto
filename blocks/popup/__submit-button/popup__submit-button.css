@@ -5,11 +5,13 @@
     line-height: 22px;
     color: #FFFFFF;
     background-color: #000000;
-    margin: 0 auto 37px;
+    margin: 0 auto;
     min-width: 358px;
     min-height: 50px;
     transition: opacity 0.4s linear;
     cursor: pointer;
+    border: 0;
+    padding: 0;
 }
 
 .popup__submit-button:hover {
