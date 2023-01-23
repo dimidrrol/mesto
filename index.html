@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Место Россия</title>
+</head>
+
+<body class="root">
+  <section class="popup">
+    <form class="popup__container">
+      <img src="./images/Close-Icon.svg" class="popup__close-button object-hover" alt="Крестик">
+      <h2 class="popup__form-title">Редактировать профиль</h2>
+      <div class="popup__form-items">
+        <input class="popup__form-text name-input" type="text" value="Жак-Ив Кусто">
+        <input class="popup__form-text job-input" type="text" value="Исследователь океана">
+      </div>
+      <input class="popup__submit-button" type="submit" value="Сохранить">
+    </form>
+  </section>
+  <header class="header">
+    <img src="./images/logo.svg" class="header__logo" alt="Место Россия">
+    <h1 class="header__line"></h1>
+  </header>
+  <main class="main">
+    <section class="profile">
+      <div class="profile__avatar">
+        <img src="./images/Jacques-Yves.png" class="profile__image" alt="Аватар">
+      </div>
+      <div class="profile__profile-info">
+        <h2 class="profile__name">Жак-Ив Кусто</h2>
+        <img src="./images/Edit-Button.svg" class="profile__edit-button object-hover"
+          alt="Кнопка добавления информации">
+        <h3 class="profile__job">Исследователь океана</h3>
+      </div>
+      <img src="./images/Add-Button.svg" class="profile__add-button object-hover" alt="Кнопка добавления места">
+      <img src="./images/Add-Button-Mobile.svg" class="profile__add-button-mobile object-hover"
+        alt="Кнопка добавления места">
+    </section>
+    <section class="elements">
+      <article class="element">
+        <img src="./images/karachaevsk.png" class="element__image" alt="Карачаевск">
+        <div class="element__description">
+          <h3 class="element__title">Карачаевск</h3>
+          <img src="./images/like-white.svg" class="element__like" alt="Лайк">
+        </div>
+      </article>
+      <article class="element">
+        <img src="./images/elbrus.png" class="element__image" alt="Эльбрус">
+        <div class="element__description">
+          <h3 class="element__title">Гора Эльбрус</h3>
+          <img src="./images/like-white.svg" class="element__like" alt="Лайк">
+        </div>
+      </article>
+      <article class="element">
+        <img src="./images/dombai.png" class="element__image" alt="Домбай">
+        <div class="element__description">
+          <h3 class="element__title">Домбай</h3>
+          <img src="./images/like-white.svg" class="element__like" alt="Лайк">
+        </div>
+      </article>
+      <article class="element">
+        <img src="./images/Golden-Gate-Bridge.jpg" class="element__image" alt="Мост Золотые Ворота">
+        <div class="element__description">
+          <h3 class="element__title">Мост Золотые Ворота</h3>
+          <img src="./images/like-white.svg" class="element__like" alt="Лайк">
+        </div>
+      </article>
+      <article class="element">
+        <img src="./images/Rize.jpg" class="element__image" alt="Гора Ризе">
+        <div class="element__description">
+          <h3 class="element__title">Гора Ризе</h3>
+          <img src="./images/like-white.svg" class="element__like" alt="Лайк">
+        </div>
+      </article>
+      <article class="element">
+        <img src="./images/Wast-Water.jpg" class="element__image" alt="Озеро Васт Уотер">
+        <div class="element__description">
+          <h3 class="element__title">Озеро Васт Уотер</h3>
+          <img src="./images/like-white.svg" class="element__like" alt="Лайк">
+        </div>
+      </article>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
+  </footer>
+  <script src="./pages/index.js"></script>
+</body>
+
+</html>
