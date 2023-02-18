@@ -9,12 +9,12 @@
 </head>
 
 <body class="root">
-  <div class="popup">
-    <div class="popup__container">
-      <button class="popup__close-button object-hover" type="button"></button>
+  <div class="popup" id="popup-profile">
+    <div class="popup__container popup__container_type_profile">
+      <button class="popup__close-button popup__close-button_type_profile object-hover" type="button"></button>
       <form class="popup__form" name="profile-form">
         <h2 class="popup__form-title">Редактировать профиль</h2>
-        <div class="popup__form-items">
+        <div class="popup__form-items popup__form-items_type_profile">
           <input class="popup__form-text popup__form-text_type_name" type="text" value="Жак-Ив Кусто"
             name="profile-name">
           <input class="popup__form-text popup__form-text_type_job" type="text" value="Исследователь океана"
@@ -22,6 +22,28 @@
           <input class="popup__submit-button" type="submit" value="Сохранить">
         </div>
       </form>
+    </div>
+  </div>
+  <div class="popup" id="popup-card">
+    <div class="popup__container popup__container_type_card">
+      <button class="popup__close-button popup__close-button_type_card object-hover" type="button"></button>
+      <form class="popup__form" name="card-form">
+        <h2 class="popup__form-title">Новое место</h2>
+        <div class="popup__form-items popup__form-items_type_card">
+          <input class="popup__form-text popup__form-text_type_title" type="text" placeholder="Название"
+            name="card-title">
+          <input class="popup__form-text popup__form-text_type_link" type="text" placeholder="Ссылка на картинку"
+            name="card-link">
+          <input class="popup__submit-button" type="submit" value="Создать">
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup-image">
+    <div class="popup-image__container">
+      <button class="popup__close-button popup__close-button_type_image object-hover" type="button"></button>
+      <img src="#" class="popup-image__image" alt="Фотография">
+      <h2 class="popup-image__description"></h2>
     </div>
   </div>
   <header class="header">
@@ -38,48 +60,16 @@
       <button class="profile__add-button object-hover" type="button"></button>
     </section>
     <section class="elements">
-      <article class="element">
-        <img src="./images/karachaevsk.png" class="element__image" alt="Карачаевск">
-        <div class="element__description">
-          <h3 class="element__title">Карачаевск</h3>
-          <button class="element__like" type="button"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img src="./images/elbrus.png" class="element__image" alt="Эльбрус">
-        <div class="element__description">
-          <h3 class="element__title">Гора Эльбрус</h3>
-          <button class="element__like" type="button"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img src="./images/dombai.png" class="element__image" alt="Домбай">
-        <div class="element__description">
-          <h3 class="element__title">Домбай</h3>
-          <button class="element__like" type="button"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img src="./images/Golden-Gate-Bridge.jpg" class="element__image" alt="Мост Золотые Ворота">
-        <div class="element__description">
-          <h3 class="element__title">Мост Золотые Ворота</h3>
-          <button class="element__like" type="button"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img src="./images/Rize.jpg" class="element__image" alt="Гора Ризе">
-        <div class="element__description">
-          <h3 class="element__title">Гора Ризе</h3>
-          <button class="element__like" type="button"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img src="./images/Wast-Water.jpg" class="element__image" alt="Озеро Васт Уотер">
-        <div class="element__description">
-          <h3 class="element__title">Озеро Васт Уотер</h3>
-          <button class="element__like" type="button"></button>
-        </div>
-      </article>
+      <template id="element">
+        <article class="element">
+          <button class="element__delete object-hover" type="button"></button>
+          <img src="#" class="element__image" alt="Фотография">
+          <div class="element__description">
+            <h3 class="element__title"></h3>
+            <button class="element__like" type="button"></button>
+          </div>
+        </article>
+      </template>
     </section>
   </main>
   <footer class="footer">
