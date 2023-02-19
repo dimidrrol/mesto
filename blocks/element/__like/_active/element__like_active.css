@@ -1,13 +1,5 @@
 .element__like_active {
-  width: 22px;
-  height: 19px;
-  align-self: center;
-  transition: opacity 0.4s linear;
   background-image: url(../../../../images/like-black.svg);
-  background-color: transparent;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
 }
 
 .element__like_active:hover {
