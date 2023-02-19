@@ -45,16 +45,16 @@ const initialCards = [
 ];
 const cardsContainer = main.querySelector('.elements');
 const elementTemplate = cardsContainer.querySelector('#element').content;
-const popupImage = document.querySelector('.popup-image');
-const popupImageContainer = popupImage.querySelector('.popup-image__container');
+const popupImage = document.querySelector('.popup_type_image');
+const popupImageContainer = popupImage.querySelector('.popup__container_type_image');
 const popupCloseImageButton = popupImageContainer.querySelector('.popup__close-button_type_image');
 
 
 
 function popupImageContent(item) {
-  popupImageContainer.querySelector('.popup-image__image').src = item.image;
-  popupImageContainer.querySelector('.popup-image__image').alt = item.name;
-  popupImageContainer.querySelector('.popup-image__description').textContent = item.name;
+  popupImageContainer.querySelector('.popup__image').src = item.image;
+  popupImageContainer.querySelector('.popup__image').alt = item.name;
+  popupImageContainer.querySelector('.popup__description').textContent = item.name;
 }
 
 
