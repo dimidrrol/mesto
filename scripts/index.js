@@ -47,14 +47,15 @@ const cardsContainer = main.querySelector('.elements');
 const elementTemplate = cardsContainer.querySelector('#element').content;
 const popupImage = document.querySelector('.popup_type_image');
 const popupImageContainer = popupImage.querySelector('.popup__container_type_image');
+const popupBigImage = popupImageContainer.querySelector('.popup__image');
+const popupDescription = popupImageContainer.querySelector('.popup__description');
 const popupCloseImageButton = popupImageContainer.querySelector('.popup__close-button_type_image');
 
 
-
 function popupImageContent(item) {
-  popupImageContainer.querySelector('.popup__image').src = item.image;
-  popupImageContainer.querySelector('.popup__image').alt = item.name;
-  popupImageContainer.querySelector('.popup__description').textContent = item.name;
+  popupBigImage.src = item.image;
+  popupBigImage.alt = item.name;
+  popupDescription.textContent = item.name;
 }
 
 
@@ -97,8 +98,8 @@ const closePopup = (popup) => {
 
 function showPopupProfile() {
   openPopup(popupProfile);
-  popupNameInput.textContent = profileName.value;
-  popupJobInput.textContent = profileJob.value;
+  profileName.value = popupNameInput.textContent;
+  profileJob.value = popupJobInput.textContent;
 }
 
 
@@ -112,9 +113,7 @@ function handleFormProfileSubmit(event) {
 
 function handleFormCardSubmit(evt) {
   evt.preventDefault();
-  initialCards.push({name: popupTitleInput.value, image: popupLinkInput.value});
-  const lastCard = initialCards.slice(-1);
-  lastCard.forEach(addCard);
+  addCard({name: popupTitleInput.value, image: popupLinkInput.value});
   closePopup(popupCard);
   evt.target.reset();
 }
