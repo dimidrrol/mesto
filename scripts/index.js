@@ -98,8 +98,8 @@ const closePopup = (popup) => {
 
 function showPopupProfile() {
   openPopup(popupProfile);
-  profileName.value = popupNameInput.textContent;
-  profileJob.value = popupJobInput.textContent;
+  popupNameInput.value = profileName.textContent;
+  popupJobInput.value = profileJob.textContent;
 }
 
 
