@@ -87,13 +87,13 @@ const closePopup = (popup) => {
 }
 
 
-const openPopup = (popup, popupCloseButton) => {
+const openPopup = (popup) => {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEsc);
 }
 
 
-function showPopupProfile() {
+function showPopupProfile(evt) {
   openPopup(popupProfile, popupCloseProfileButton);
   popupNameInput.value = profileName.textContent;
   popupJobInput.value = profileJob.textContent;
