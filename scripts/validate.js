@@ -1,24 +1,24 @@
-const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, inputErrorClass, errorClass, errorMessage) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.add('popup__form-text_type_error');
+    inputElement.classList.add(inputErrorClass);
     errorElement.textContent = errorMessage;
-    errorElement.classList.add('popup__form-text-error');
+    errorElement.classList.add(errorClass);
 };
 
 
-const hideInputError = (formElement, inputElement) => {
+const hideInputError = (formElement, inputElement, inputErrorClass, errorClass) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove('popup__form-text_type_error');
+    inputElement.classList.remove(inputErrorClass);
     errorElement.textContent = '';
-    errorElement.classList.remove('popup__form-text-error');
+    errorElement.classList.remove(errorClass);
 };
 
 
-const checkInputValidity = (formElement, inputElement) => {
+const checkInputValidity = (formElement, inputElement, inputErrorClass, errorClass) => {
     if (!inputElement.validity.valid) {
-        showInputError(formElement, inputElement, inputElement.validationMessage);
+        showInputError(formElement, inputElement, inputErrorClass, errorClass, inputElement.validationMessage);
     } else {
-        hideInputError(formElement, inputElement);
+        hideInputError(formElement, inputElement, inputErrorClass, errorClass);
     }
 };
 
@@ -26,43 +26,47 @@ const checkInputValidity = (formElement, inputElement) => {
 function hasInvalidInput(inputList) {
     return inputList.some((inputElement) => {
         return !inputElement.validity.valid;
-    })
-}
+    });
+};
 
 
-function toggleButtonState(inputList, buttonElement) {
+function toggleButtonState(inputList, buttonElement, inactiveButtonElement) {
     if (hasInvalidInput(inputList)) {
-        buttonElement.classList.add('popup__submit-button_inactive');
+        buttonElement.classList.add(inactiveButtonElement);
         buttonElement.disabled = true;
     } else {
-        buttonElement.classList.remove('popup__submit-button_inactive');
+        buttonElement.classList.remove(inactiveButtonElement);
         buttonElement.disabled = false;
     }
 }
 
 
-const setEventListener = (formElement) => {
-    const inputList = Array.from(formElement.querySelectorAll('.popup__form-text'));
-    const buttonElement = formElement.querySelector('.popup__submit-button');
+const setEventListener = (formElement, inputElement, inputButtonElement, inputErrorClass, errorClass, inactiveButtonElement) => {
+    const inputList = Array.from(formElement.querySelectorAll(inputElement));
+    const buttonElement = formElement.querySelector(inputButtonElement);
     toggleButtonState(inputList, buttonElement);
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', function () {
-            checkInputValidity(formElement, inputElement);
+            checkInputValidity(formElement, inputElement, inputErrorClass, errorClass);
             toggleButtonState(inputList, buttonElement);
         });
     });
 };
 
 
-const enableValidation = () => {
-    const formList = Array.from(document.querySelectorAll('.popup__form'));
+const enableValidation = (form) => {
+    const formList = Array.from(document.querySelectorAll(form.inputForm));
     formList.forEach((formElement) => {
-        formElement.addEventListener('submit', function (evt) {
-            evt.preventDefault(); 
-        });
-        setEventListener(formElement);
+        setEventListener(formElement, form.inputElement, form.inputButtonElement, form.inputErrorClass, form.errorClass);
     });
 };
 
 
-enableValidation();
+enableValidation({
+    inputForm: '.popup__form',
+    inputElement: '.popup__form-text',
+    inputButtonElement: '.popup__submit-button',
+    inactiveButtonElement: 'popup__submit-button_inactive',
+    inputErrorClass: 'popup__form-text_type_error',
+    errorClass: 'popup__form-text-error',
+});

@@ -15,16 +15,12 @@
       <form class="popup__form" name="profile-form" novalidate>
         <h2 class="popup__form-title">Редактировать профиль</h2>
         <div class="popup__form-items popup__form-items_type_profile">
-          <label class="popup__form-field">
-            <input id="name-input" class="popup__form-text" type="text" value="Жак-Ив Кусто" name="profile-name"
-              minlength="2" maxlength="40" required>
-            <span class="name-input-error span-empty"></span>
-          </label>
-          <label class="popup__form-field">
-            <input id="job-input" class="popup__form-text" type="text" value="Исследователь океана" name="profile-job"
-              minlength="2" maxlength="200" required>
-            <span class="job-input-error span-empty"></span>
-          </label>
+          <input id="name-input" class="popup__form-text" type="text" placeholder="Имя" name="profile-name"
+            minlength="2" maxlength="40" required>
+          <span class="name-input-error span-empty"></span>
+          <input id="job-input" class="popup__form-text" type="text" placeholder="О себе" name="profile-job"
+            minlength="2" maxlength="200" required>
+          <span class="job-input-error span-empty"></span>
           <input class="popup__submit-button" type="submit" value="Сохранить">
         </div>
       </form>
@@ -36,16 +32,12 @@
       <form class="popup__form" name="card-form" novalidate>
         <h2 class="popup__form-title">Новое место</h2>
         <div class="popup__form-items popup__form-items_type_card">
-          <label class="popup__form-field">
-            <input id="title-input" class="popup__form-text" type="text" placeholder="Название" name="card-title"
-              minlength="2" maxlength="30" required>
-            <span class="title-input-error span-empty"></span>
-          </label>
-          <label class="popup__form-field">
-            <input id="link-input" class="popup__form-text" type="url" placeholder="Ссылка на картинку" name="card-link"
-              required>
-            <span class="link-input-error span-empty"></span>
-          </label>
+          <input id="title-input" class="popup__form-text" type="text" placeholder="Название" name="card-title"
+            minlength="2" maxlength="30" required>
+          <span class="title-input-error span-empty"></span>
+          <input id="link-input" class="popup__form-text" type="url" placeholder="Ссылка на картинку" name="card-link"
+            required>
+          <span class="link-input-error span-empty"></span>
           <input class="popup__submit-button" type="submit" value="Создать">
         </div>
       </form>
@@ -88,6 +80,7 @@
     <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
   </footer>
   <script src="./scripts/validate.js"></script>
+  <script src="./scripts/cards.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 
