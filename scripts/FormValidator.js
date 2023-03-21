@@ -1,27 +1,27 @@
 export class FormValidator {
 
 
-    constructor(valid, formElement) {
-        this._valid = valid;
+    constructor(settingsValidation, formElement) {
+        this._settingsValidation = settingsValidation;
         this._formElement = formElement;
-        this._inputList = Array.from(this._formElement.querySelectorAll(this._valid.inputElement));
-        this._buttonElement = this._formElement.querySelector(this._valid.inputButtonElement);
+        this._inputList = Array.from(this._formElement.querySelectorAll(this._settingsValidation.inputElement));
+        this._buttonElement = this._formElement.querySelector(this._settingsValidation.inputButtonElement);
     }
 
 
     _showInputError(inputElement, errorMessage) {
         const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
-        inputElement.classList.add(this._valid.inputErrorClass);
+        inputElement.classList.add(this._settingsValidation.inputErrorClass);
         errorElement.textContent = errorMessage;
-        errorElement.classList.add(this._valid.errorClass);
+        errorElement.classList.add(this._settingsValidation.errorClass);
     }
 
 
     _hideInputError(inputElement) {
         const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
-        inputElement.classList.remove(this._valid.inputErrorClass);
+        inputElement.classList.remove(this._settingsValidation.inputErrorClass);
         errorElement.textContent = '';
-        errorElement.classList.remove(this._valid.errorClass);
+        errorElement.classList.remove(this._settingsValidation.errorClass);
     }
 
 
@@ -43,12 +43,19 @@ export class FormValidator {
 
     _toggleButtonState() {
         if (this._hasInvalidInput()) {
-            this._buttonElement.classList.add(this._valid.inactiveButtonElement);
+            this._buttonElement.classList.add(this._settingsValidation.inactiveButtonElement);
             this._buttonElement.disabled = true;
         } else {
-            this._buttonElement.classList.remove(this._valid.inactiveButtonElement);
+            this._buttonElement.classList.remove(this._settingsValidation.inactiveButtonElement);
             this._buttonElement.disabled = false;
         }
+    }
+
+    resetValidation() {
+        this._toggleButtonState();
+        this._inputList.forEach((inputElement) => {
+            this._hideInputError(inputElement);
+        });
     }
 
 

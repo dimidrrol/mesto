@@ -1,5 +1,6 @@
 export class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, handleOpenPopup) {
+    this._handleOpenPopup = handleOpenPopup;
     this._name = data.name;
     this._image = data.image;
     this._template = templateSelector;
@@ -12,23 +13,25 @@ export class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector('.element__image');
+    this._likeButton = this._element.querySelector('.element__like');
     this._setEventListenerLike();
     this._setEventListenerDelete();
     this._setEventListenerPopup();
-    this._element.querySelector('.element__image').src = this._image;
-    this._element.querySelector('.element__image').alt = this._name;
+    this._cardImage.src = this._image;
+    this._cardImage.alt = this._name;
     this._element.querySelector('.element__title').textContent = this._name;
     return this._element;
   }
 
   _setEventListenerLike() {
-    this._element.querySelector('.element__like').addEventListener('click', () => {
+    this._likeButton.addEventListener('click', () => {
       this._handleLickClick();
     })
   }
 
   _handleLickClick() {
-    this._element.querySelector('.element__like').classList.toggle('element__like_active');
+    this._likeButton.classList.toggle('element__like_active');
   }
 
   _setEventListenerDelete() {
@@ -38,23 +41,13 @@ export class Card {
   }
 
   _handleDeleteClick() {
-    this._element.querySelector('.element__delete').closest('.element').remove();
+    this._element.remove();
+    this._element = null;
   }
 
   _setEventListenerPopup() {
-    this._element.querySelector('.element__image').addEventListener('click', () => {
-      const popupBigImage = document.querySelector('.popup__image');
-      const popupDescription = document.querySelector('.popup__description');
-      const popupImage = document.querySelector('.popup_type_image');
-      popupBigImage.src = this._image;
-      popupBigImage.alt = this._name;
-      popupDescription.textContent = this._name;
-      popupImage.classList.add('popup_opened');
-      document.addEventListener('keydown', (evt) => {
-        if (evt.key === 'Escape') {
-          popupImage.classList.remove('popup_opened');
-        }
-      });
+    this._cardImage.addEventListener('click', () => {
+      this._handleOpenPopup(this._name, this._image);
     });
   }
 }

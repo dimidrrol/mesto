@@ -23,6 +23,9 @@ const profileEditButton = profileInfo.querySelector('.profile__edit-button');
 const profileAddButton = profile.querySelector('.profile__add-button');
 const cardsContainer = main.querySelector('.elements');
 const buttonCloseList = document.querySelectorAll('.popup__close-button');
+const popupBigImage = document.querySelector('.popup__image');
+const popupDescription = document.querySelector('.popup__description');
+const popupImage = document.querySelector('.popup_type_image');
 
 
 const initialCards = [
@@ -53,7 +56,7 @@ const initialCards = [
 ];
 
 
-const validForm = {
+const cardElement = {
   inputForm: '.popup__form',
   inputElement: '.popup__form-text',
   inputButtonElement: '.popup__submit-button',
@@ -74,10 +77,15 @@ buttonCloseList.forEach((btn) => {
 });
 
 
-initialCards.forEach((item) => {
-  const card = new Card(item, '#element');
+function createCard(item) {
+  const card = new Card(item, '#element', handleOpenPopup);
   const cardElement = card.generateCard();
-  cardsContainer.prepend(cardElement);
+  return cardElement;
+}
+
+
+initialCards.forEach((item) => {
+  cardsContainer.prepend(createCard(item));
 });
 
 
@@ -101,10 +109,20 @@ const openPopup = (popup) => {
 }
 
 
+function handleOpenPopup(name, image) {
+  popupBigImage.src = image;
+  popupBigImage.alt = name;
+  popupDescription.textContent = name;
+  openPopup(popupImage);
+}
+
+
 function showPopupProfile() {
   openPopup(popupProfile, popupCloseProfileButton);
   popupNameInput.value = profileName.textContent;
   popupJobInput.value = profileJob.textContent;
+  const emptyValid = new FormValidator(cardElement, popupProfile);
+  emptyValid.resetValidation();
 }
 
 
@@ -118,26 +136,27 @@ function handleFormProfileSubmit(event) {
 
 function handleFormCardSubmit(evt) {
   evt.preventDefault();
-  const card = new Card({ name: popupTitleInput.value, image: popupLinkInput.value }, '#element');
+  const card = new Card({ name: popupTitleInput.value, image: popupLinkInput.value }, '#element', handleOpenPopup);
   const cardElement = card.generateCard();
   cardsContainer.prepend(cardElement);
   closePopup(popupCard);
   evt.target.reset();
-  evt.submitter.classList.add('popup__submit-button_inactive');
   evt.submitter.disabled = true;
 }
 
 
-const profileValidation = new FormValidator(validForm, popupProfile);
+const profileValidation = new FormValidator(cardElement, popupProfile);
 profileValidation.enableValidation();
 
-const cardValidation = new FormValidator(validForm, popupCard);
+const cardValidation = new FormValidator(cardElement, popupCard);
 cardValidation.enableValidation();
 
 
 profileEditButton.addEventListener('click', showPopupProfile);
 profileAddButton.addEventListener('click', function () {
   openPopup(popupCard, popupCloseCardButton);
+  const emptyValid = new FormValidator(cardElement, popupCard);
+  emptyValid.resetValidation();
 });
 popupProfileContainer.addEventListener('submit', handleFormProfileSubmit);
 popupCardContainer.addEventListener('submit', handleFormCardSubmit);
