@@ -56,7 +56,7 @@ const initialCards = [
 ];
 
 
-const cardElement = {
+const settingsValidation = {
   inputForm: '.popup__form',
   inputElement: '.popup__form-text',
   inputButtonElement: '.popup__submit-button',
@@ -121,8 +121,7 @@ function showPopupProfile() {
   openPopup(popupProfile, popupCloseProfileButton);
   popupNameInput.value = profileName.textContent;
   popupJobInput.value = profileJob.textContent;
-  const emptyValid = new FormValidator(cardElement, popupProfile);
-  emptyValid.resetValidation();
+  profileValidation.resetValidation();
 }
 
 
@@ -136,27 +135,24 @@ function handleFormProfileSubmit(event) {
 
 function handleFormCardSubmit(evt) {
   evt.preventDefault();
-  const card = new Card({ name: popupTitleInput.value, image: popupLinkInput.value }, '#element', handleOpenPopup);
-  const cardElement = card.generateCard();
+  const cardElement = createCard({ name: popupTitleInput.value, image: popupLinkInput.value });
   cardsContainer.prepend(cardElement);
   closePopup(popupCard);
   evt.target.reset();
-  evt.submitter.disabled = true;
 }
 
 
-const profileValidation = new FormValidator(cardElement, popupProfile);
+const profileValidation = new FormValidator(settingsValidation, popupProfile);
 profileValidation.enableValidation();
 
-const cardValidation = new FormValidator(cardElement, popupCard);
+const cardValidation = new FormValidator(settingsValidation, popupCard);
 cardValidation.enableValidation();
 
 
 profileEditButton.addEventListener('click', showPopupProfile);
 profileAddButton.addEventListener('click', function () {
   openPopup(popupCard, popupCloseCardButton);
-  const emptyValid = new FormValidator(cardElement, popupCard);
-  emptyValid.resetValidation();
+  cardValidation.resetValidation();
 });
 popupProfileContainer.addEventListener('submit', handleFormProfileSubmit);
 popupCardContainer.addEventListener('submit', handleFormCardSubmit);
