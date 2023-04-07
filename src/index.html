@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Место Россия</title>
 </head>
 
@@ -51,11 +50,11 @@
     </div>
   </div>
   <header class="header">
-    <img src="./images/logo.svg" class="header__logo" alt="Место Россия">
+    <img src="<%=require('../images/logo.svg')%>" class="header__logo" alt="Место Россия">
   </header>
   <main class="main">
     <section class="profile">
-      <img src="./images/Jacques-Yves.png" class="profile__image" alt="Аватар">
+      <img src="<%=require('../images/Jacques-Yves.png')%>" class="profile__image" alt="Аватар">
       <div class="profile__profile-info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
         <button class="profile__edit-button object-hover" type="button"></button>
@@ -79,7 +78,6 @@
   <footer class="footer">
     <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
   </footer>
-  <script type="module" src="./scripts/index.js"></script>
 </body>
 
 </html>
