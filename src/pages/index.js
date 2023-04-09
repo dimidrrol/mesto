@@ -7,17 +7,12 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 import {
   popupProfile,
-  popupProfileContainer,
   popupCard,
-  popupCardContainer,
-  popupTitleInput,
-  popupLinkInput,
   profileName,
   profileJob,
   profileEditButton,
   profileAddButton,
   cardsContainer,
-  popupImage,
   initialCards,
   settingsValidation
 } from '../utils/constants.js';
@@ -29,8 +24,8 @@ const userInfo = new UserInfo({ name: profileName, job: profileJob });
 const popupProfileClass = new PopupWithForm(
   '#popup-profile',
   (formData) => {
-    const name = formData['profile-name'];
-    const job = formData['profile-job'];
+    const name = formData['name'];
+    const job = formData['job'];
     userInfo.setUserInfo(name, job);
     popupProfileClass.close();
   });
@@ -76,6 +71,8 @@ function handleOpenPopup(name, image) {
 function showPopupProfile() {
   popupProfileClass.open();
   profileValidation.resetValidation();
+  const userData = userInfo.getUserInfo();
+  popupProfileClass.setInputValues(userData);
 }
 
 
