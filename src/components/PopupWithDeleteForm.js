@@ -15,7 +15,7 @@ export default class PopupWithDeleteForm extends Popup {
         this._element = element;
         this._deleteButtom.addEventListener('click', (evt) => {
             evt.preventDefault();
-            this._handleDeleteForm();
+            this._handleDeleteForm(this._cardId, this._element);
         });
     }
 
@@ -24,7 +24,7 @@ export default class PopupWithDeleteForm extends Popup {
         this._element.remove();
     }
 
-    
+
     getCardId() {
         return this._cardId;
     }

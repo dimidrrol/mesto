@@ -8,12 +8,7 @@ class Api {
         return fetch(`${this.url}/cards`, {
             headers: this.headers
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json()
-                }
-                return Promise.reject(`Ошибка: ${res.status}`)
-            })
+        .then(this._checkResponse)
     }
 
     createCard({ name, link }) {
@@ -24,23 +19,15 @@ class Api {
                 "name": name,
                 "link": link
             })
-        }).then(res => {
-            if (res.ok) {
-                return res.json()
-            }
-            return Promise.reject(`Ошибка: ${res.status}`)
         })
+        .then(this._checkResponse)
     }
 
     getUserInfo() {
         return fetch(`${this.url}/users/me`, {
             headers: this.headers
-        }).then(res => {
-            if (res.ok) {
-                return res.json()
-            }
-            return Promise.reject(`Ошибка: ${res.status}`)
         })
+        .then(this._checkResponse)
     }
 
     patchUserInfo({ name, about }) {
@@ -51,12 +38,8 @@ class Api {
                 "name": name,
                 "about": about
             })
-        }).then(res => {
-            if (res.ok) {
-                return res.json()
-            }
-            return Promise.reject(`Ошибка: ${res.status}`)
         })
+        .then(this._checkResponse)
     }
 
     patchAvatar({ avatar }) {
@@ -66,56 +49,48 @@ class Api {
             body: JSON.stringify({
                 "avatar": avatar
             })
-        }).then(res => {
-            if (res.ok) {
-                return res.json()
-            }
-            return Promise.reject(`Ошибка: ${res.status}`)
         })
+        .then(this._checkResponse)
     }
 
     putLike(id) {
         return fetch(`${this.url}/cards/${id}/likes`, {
             method: 'PUT',
             headers: this.headers
-        }).then(res => {
-            if (res.ok) {
-                return res.json()
-            }
-            return Promise.reject(`Ошибка: ${res.status}`)
         })
+        .then(this._checkResponse)
     }
 
     deleteLike(id) {
         return fetch(`${this.url}/cards/${id}/likes`, {
             method: 'DELETE',
             headers: this.headers
-        }).then(res => {
-            if (res.ok) {
-                return res.json()
-            }
-            return Promise.reject(`Ошибка: ${res.status}`)
         })
+        .then(this._checkResponse)
     }
 
     deleteCard(id) {
         return fetch(`${this.url}/cards/${id}`, {
             method: 'DELETE',
             headers: this.headers
-        }).then(res => {
-            if (res.ok) {
-                return res.json()
-            }
-            return Promise.reject(`Ошибка: ${res.status}`)
         })
+        .then(this._checkResponse)
     }
+
+    _checkResponse(res) {
+        if (res.ok) {
+            return res.json()
+        }
+        return Promise.reject(`Ошибка: ${res.status}`)
+    }
+
 }
 
 
 export const api = new Api({
     url: "https://mesto.nomoreparties.co/v1/cohort-64",
     headers: {
-      'content-type': 'application/json',
-      authorization: '1a16e618-3531-4834-94e8-1a3de9e66fb4'
+        'content-type': 'application/json',
+        authorization: '1a16e618-3531-4834-94e8-1a3de9e66fb4'
     }
-  })
+})

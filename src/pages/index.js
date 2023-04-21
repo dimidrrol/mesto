@@ -26,6 +26,8 @@ Promise.all([api.getUserInfo(), api.getCardsInfo()])
   .then(([userData, initialCards]) => {
     userInfo.setUserInfo(userData);
     cardsList.renderItems(initialCards);
+  }).catch((err) => {
+    console.log(err);
   })
 
 
@@ -43,11 +45,11 @@ const popupProfileClass = new PopupWithForm(
         userInfo.setUserInfo(data);
         popupProfileClass.close();
       })
-      .catch((err) => {
-        console.log(err);
-      })
       .finally(() => {
         popupProfileClass.renderLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
       })
   });
 
@@ -61,11 +63,11 @@ const popupAvatarClass = new PopupWithForm(
       userInfo.setUserInfo(data);
       popupAvatarClass.close();
     })
-    .catch((err) => {
-      console.log(err);
-    })
     .finally(() => {
       popupAvatarClass.renderLoading(false);
+    })
+    .catch((err) => {
+      console.log(err);
     })
   }
 )
@@ -89,11 +91,11 @@ const popupCardClass = new PopupWithForm(
         cardsList.setItem(cardElement);
         popupCardClass.close();
       })
-      .catch((err) => {
-        console.log(err);
-      })
       .finally(() => {
         popupCardClass.renderLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
       })
   });
 
